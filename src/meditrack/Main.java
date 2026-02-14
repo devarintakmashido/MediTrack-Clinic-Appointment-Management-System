@@ -22,11 +22,11 @@ public class Main {
             choice = Integer.parseInt(sc.nextLine());
             switch (choice) {
                 case 1:
-                    HandleMenu.handleDoctorMenu();
+                    HandleMenu.handlePatientMenu();
                     break;
 
                 case 2:
-                    HandleMenu.handlePatientMenu();
+                    HandleMenu.handleDoctorMenu();
                     break;
 
                 case 3:
