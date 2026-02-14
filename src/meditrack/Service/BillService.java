@@ -10,22 +10,23 @@ import meditrack.Exception.EntityNotFoundException;
 
 public class BillService {
 
-    public static void generateBill(String appointment_id) throws EntityNotFoundException {
+    public static String generateBill(String appointment_id) throws EntityNotFoundException {
         Appointment appointment = AppointmentRepository.findById(appointment_id);
-        if(appointment == null){
+        if (appointment == null) {
             throw new EntityNotFoundException("Invalid appointment id");
         }
-        BillRepository.addBill(appointment);
-
+        String billId = BillRepository.addBill(appointment);
+        System.out.println("Bill generated: " + billId);
+        return billId;
     }
 
-    public static void payBill(String bill_id) throws EntityNotFoundException {
+    public static BillSummary payBill(String bill_id) throws EntityNotFoundException {
         Bill bill = BillRepository.getById(bill_id);
-        if(bill == null){
+        if (bill == null) {
             throw new EntityNotFoundException("Invalid Bill Id");
         }
         BillSummary billSummary = bill.generateBillSummary();
         BillSummaryRepo.addSummary(billSummary);
-
+        return billSummary;
     }
 }

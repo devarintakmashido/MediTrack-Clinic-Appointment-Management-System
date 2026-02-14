@@ -1,10 +1,11 @@
 package meditrack.Entity;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Patient extends Person {
+public class Patient extends Person implements Cloneable {
 
     private LocalDate dob;
     private List<String> medicalHistory;
@@ -21,7 +22,11 @@ public class Patient extends Person {
     }
 
     public int getAge() {
-        return  Period.between(dob, LocalDate.now()).getYears();
+        return Period.between(dob, LocalDate.now()).getYears();
+    }
+
+    public LocalDate getDob() {
+        return dob;
     }
 
     public void setDob(LocalDate dob) {
@@ -29,7 +34,7 @@ public class Patient extends Person {
     }
 
     public List<String> getMedicalHistory() {
-        return medicalHistory;
+        return new ArrayList<>(medicalHistory);
     }
 
     public void addMedicalRecord(String record) {
@@ -37,8 +42,22 @@ public class Patient extends Person {
     }
 
     public void setMedicalHistory(List<String> medicalHistory) {
-        this.medicalHistory = medicalHistory;
+        this.medicalHistory = new ArrayList<>(medicalHistory);
     }
 
+    @Override
+    public Patient clone() {
+        Patient copy = new Patient(getPersonId(), getName(), getEmail(), getPhoneNumber(), dob);
+        copy.setMedicalHistory(this.medicalHistory);
+        return copy;
+    }
 
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "id='" + getPersonId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", age=" + getAge() +
+                '}';
+    }
 }

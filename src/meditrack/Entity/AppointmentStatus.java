@@ -1,7 +1,9 @@
 package meditrack.Entity;
 
 public enum AppointmentStatus {
-    SCHEDULED,
+    PENDING,
+    CONFIRMED,
     CANCELLED,
-    COMPLETED
+    COMPLETED,
+    SCHEDULED
 }

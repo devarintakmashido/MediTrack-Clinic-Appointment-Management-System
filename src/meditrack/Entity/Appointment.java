@@ -2,21 +2,19 @@ package meditrack.Entity;
 
 import java.time.LocalDate;
 
-public class Appointment {
+public class Appointment implements Cloneable {
     private final String appointmentId;
     private Patient patient;
     private Doctor doctor;
     private AppointmentStatus appointmentStatus;
     private LocalDate dateOfAppointment;
 
-
-
     public Appointment(String appointmentId, Doctor doctor, Patient patient, LocalDate dateOfAppointment) {
         this.appointmentId = appointmentId;
         this.doctor = doctor;
         this.patient = patient;
         this.dateOfAppointment = dateOfAppointment;
-        this.appointmentStatus = AppointmentStatus.SCHEDULED;
+        this.appointmentStatus = AppointmentStatus.PENDING;
     }
 
     public String getAppointmentId() {
@@ -27,10 +25,17 @@ public class Appointment {
         return doctor;
     }
 
+    public Patient getPatient() {
+        return patient;
+    }
 
-//    public AppointmentStatus getStatus{
-//        return appointmentStatus;
-//    }
+    public LocalDate getDateOfAppointment() {
+        return dateOfAppointment;
+    }
+
+    public void confirm() {
+        this.appointmentStatus = AppointmentStatus.CONFIRMED;
+    }
 
     public void cancel() {
         this.appointmentStatus = AppointmentStatus.CANCELLED;
@@ -43,10 +48,24 @@ public class Appointment {
     public AppointmentStatus getStatus() {
         return appointmentStatus;
     }
-    public void displayAppointment(){
+
+    public void displayAppointment() {
         System.out.println("Appointment Id:" + appointmentId);
-        System.out.println("Doctor Name/Doctor ID" + doctor.getName() + "/" + doctor.getPersonId());
-        System.out.println("Patient Name/Patient ID" + patient.getName() + "/" + patient.getPersonId());
+        System.out.println("Doctor Name/Doctor ID " + doctor.getName() + "/" + doctor.getPersonId());
+        System.out.println("Patient Name/Patient ID " + patient.getName() + "/" + patient.getPersonId());
+    }
+
+    @Override
+    public Appointment clone() {
+        Appointment copy = new Appointment(appointmentId, doctor.clone(), patient.clone(), dateOfAppointment);
+        if (appointmentStatus == AppointmentStatus.CONFIRMED) {
+            copy.confirm();
+        } else if (appointmentStatus == AppointmentStatus.CANCELLED) {
+            copy.cancel();
+        } else if (appointmentStatus == AppointmentStatus.COMPLETED) {
+            copy.markCompleted();
+        }
+        return copy;
     }
 
     @Override
@@ -64,9 +83,5 @@ public class Appointment {
 
     public double getDoctorFee() {
         return doctor.getConsultationFee();
-    }
-
-    public Patient getPatient() {
-        return patient;
     }
 }

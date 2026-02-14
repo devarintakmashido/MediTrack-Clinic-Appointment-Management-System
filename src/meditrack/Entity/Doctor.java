@@ -1,6 +1,6 @@
 package meditrack.Entity;
 
-public class Doctor extends Person {
+public class Doctor extends Person implements Cloneable {
 
     private Speciality speciality;
     private double consultationFee;
@@ -33,5 +33,18 @@ public class Doctor extends Person {
         this.consultationFee = consultationFee;
     }
 
+    @Override
+    public Doctor clone() {
+        return new Doctor(getPersonId(), getName(), getEmail(), getPhoneNumber(), speciality, consultationFee);
+    }
 
+    @Override
+    public String toString() {
+        return "Doctor{" +
+                "id='" + getPersonId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", speciality=" + speciality +
+                ", fee=" + consultationFee +
+                '}';
+    }
 }

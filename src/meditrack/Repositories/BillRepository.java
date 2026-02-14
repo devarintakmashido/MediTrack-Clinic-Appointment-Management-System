@@ -12,9 +12,11 @@ import java.util.List;
 public class BillRepository {
     static final DataStore<Bill> billDataStore = new DataStore<>();
 
-    public static void addBill(Appointment appointment){
+    public static String addBill(Appointment appointment) {
         String bill_id = IdGenerator.generateID("BILL");
-        Bill bill = new Bill(bill_id,appointment);
+        Bill bill = new Bill(bill_id, appointment);
+        billDataStore.add(bill);
+        return bill_id;
     }
 
     public static Bill getById(String billId) {
@@ -26,7 +28,7 @@ public class BillRepository {
         return null;
     }
 
-    public Bill getByAppointmentId(String appointmentId) {
+    public static Bill getByAppointmentId(String appointmentId) {
         for (Bill bill : billDataStore.getAll()) {
             if (bill.getAppointment().getAppointmentId().equals(appointmentId)) {
                 return bill;
@@ -36,7 +38,7 @@ public class BillRepository {
         return null;
     }
 
-    public List<Bill> getByPatientId(String patientId) {
+    public static List<Bill> getByPatientId(String patientId) {
 
         List<Bill> billsOfPatient = new ArrayList<>();
 
@@ -53,8 +55,7 @@ public class BillRepository {
         return billsOfPatient;
     }
 
-    public List<Bill> getAllBills() {
+    public static List<Bill> getAllBills() {
         return billDataStore.getAll();
     }
-
 }

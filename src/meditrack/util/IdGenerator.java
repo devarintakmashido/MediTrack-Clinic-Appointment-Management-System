@@ -1,12 +1,12 @@
 package meditrack.util;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class IdGenerator {
-    private static Integer currentDataId = 0;
+    private static final AtomicInteger currentDataId = new AtomicInteger(0);
 
     public static String generateID(String type) {
-        currentDataId++;
-        return type +Integer.toString(currentDataId);
+        int id = currentDataId.incrementAndGet();
+        return type + id;
     }
-
-
 }

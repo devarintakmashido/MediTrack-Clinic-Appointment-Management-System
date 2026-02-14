@@ -1,8 +1,10 @@
 package meditrack.Entity;
 
+import meditrack.constants.Constants;
+
 import java.time.LocalDateTime;
 
-public class Bill implements Payable{
+public class Bill implements Payable {
     private final String billId;
     private final Appointment appointment;
     private double baseAmount;
@@ -16,6 +18,8 @@ public class Bill implements Payable{
         this.generatedAt = LocalDateTime.now();
 
         this.baseAmount = appointment.getDoctorFee();
+        calculateTax(Constants.TAX_RATE);
+        calculateTotal();
     }
 
     public void calculateTax(double taxRate) {
@@ -38,6 +42,10 @@ public class Bill implements Payable{
         return appointment;
     }
 
+    public LocalDateTime getGeneratedAt() {
+        return generatedAt;
+    }
+
     @Override
     public BillSummary generateBillSummary() {
         return new BillSummary(
@@ -48,4 +56,3 @@ public class Bill implements Payable{
         );
     }
 }
-
