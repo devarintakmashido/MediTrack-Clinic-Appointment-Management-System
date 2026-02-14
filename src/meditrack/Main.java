@@ -1,5 +1,6 @@
 package meditrack;
 
+
 import meditrack.Entity.Appointment;
 import meditrack.Entity.BillSummary;
 import meditrack.Entity.Doctor;
@@ -14,19 +15,24 @@ import meditrack.Service.PatientService;
 import meditrack.constants.Constants;
 import meditrack.util.CSVUtil;
 
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Main {
+
 
     public static void main(String[] args) {
         if (args.length > 0 && "--loadData".equalsIgnoreCase(args[0])) {
             loadDataFromCsv();
         }
 
+
         Scanner scanner = new Scanner(System.in);
+
 
         while (true) {
             System.out.println("\n===== MediTrack =====");
@@ -38,8 +44,10 @@ public class Main {
             System.out.println("6. Search Patient (id/name/age)");
             System.out.println("7. List Doctors");
             System.out.println("8. Save Data to CSV");
-            System.out.println("9. Exit");
+            System.out.println("9. Streams Analytics");
+            System.out.println("10. Exit");
             System.out.print("Choose: ");
+
 
             int choice;
             try {
@@ -48,6 +56,7 @@ public class Main {
                 System.out.println("Invalid choice");
                 continue;
             }
+
 
             try {
                 if (choice == 1) {
@@ -67,6 +76,8 @@ public class Main {
                 } else if (choice == 8) {
                     saveDataToCsv();
                 } else if (choice == 9) {
+                    showStreamsAnalytics(scanner);
+                } else if (choice == 10) {
                     break;
                 } else {
                     System.out.println("Invalid option");
@@ -76,6 +87,7 @@ public class Main {
             }
         }
     }
+
 
     private static void addDoctor(Scanner scanner) {
         System.out.print("Name: ");
@@ -89,9 +101,11 @@ public class Main {
         System.out.print("Fee: ");
         double fee = Double.parseDouble(scanner.nextLine());
 
+
         String id = DoctorService.addNewDoctor(name, email, phone, speciality, fee);
         System.out.println("Doctor added: " + id);
     }
+
 
     private static void addPatient(Scanner scanner) throws InvalidInputException {
         System.out.print("Name: ");
@@ -103,9 +117,11 @@ public class Main {
         System.out.print("DOB (yyyy-mm-dd): ");
         LocalDate dob = LocalDate.parse(scanner.nextLine());
 
+
         String id = PatientService.createNewPatient(name, email, phone, dob);
         System.out.println("Patient added: " + id);
     }
+
 
     private static void bookAppointment(Scanner scanner) throws EntityNotFoundException {
         System.out.print("Patient ID: ");
@@ -115,8 +131,10 @@ public class Main {
         System.out.print("Date (yyyy-mm-dd): ");
         LocalDate date = LocalDate.parse(scanner.nextLine());
 
+
         AppointmentService.bookAppointment(patientId, doctorId, date);
     }
+
 
     private static void cancelAppointment(Scanner scanner) throws EntityNotFoundException {
         System.out.print("Appointment ID: ");
@@ -124,18 +142,22 @@ public class Main {
         AppointmentService.cancelAppointment(appointmentId);
     }
 
+
     private static void generateAndPayBill(Scanner scanner) throws EntityNotFoundException {
         System.out.print("Appointment ID: ");
         String appointmentId = scanner.nextLine();
+
 
         String billId = BillService.generateBill(appointmentId);
         BillSummary summary = BillService.payBill(billId);
         System.out.println("Paid: " + summary);
     }
 
+
     private static void searchPatient(Scanner scanner) throws EntityNotFoundException {
         System.out.println("Search by 1-id 2-name 3-age");
         int searchType = Integer.parseInt(scanner.nextLine());
+
 
         if (searchType == 1) {
             System.out.print("Patient ID: ");
@@ -157,6 +179,7 @@ public class Main {
         }
     }
 
+
     private static void listDoctors() {
         List<Doctor> doctors = DoctorService.getAllDoctors();
         for (Doctor d : doctors) {
@@ -164,24 +187,63 @@ public class Main {
         }
     }
 
+
+    private static void showStreamsAnalytics(Scanner scanner) {
+        System.out.println("Streams Menu");
+        System.out.println("1. Filter doctors by speciality");
+        System.out.println("2. Average consultation fee");
+        System.out.println("3. Appointments per doctor");
+        System.out.print("Choose: ");
+
+
+        int option = Integer.parseInt(scanner.nextLine());
+        if (option == 1) {
+            System.out.print("Enter speciality: ");
+            Speciality speciality = Speciality.valueOf(scanner.nextLine().trim().toUpperCase());
+            List<Doctor> list = DoctorService.getDoctorsBySpeciality(speciality);
+            if (list.isEmpty()) {
+                System.out.println("No doctors found.");
+            } else {
+                list.forEach(System.out::println);
+            }
+        } else if (option == 2) {
+            double avg = DoctorService.getAverageConsultationFee();
+            System.out.println("Average consultation fee: " + avg);
+        } else if (option == 3) {
+            var map = AppointmentService.getAppointmentCountPerDoctor();
+            if (map.isEmpty()) {
+                System.out.println("No appointments found.");
+            } else {
+                map.forEach((doctor, count) -> System.out.println(doctor + " -> " + count));
+            }
+        } else {
+            System.out.println("Invalid option");
+        }
+    }
+
+
     private static void saveDataToCsv() throws IOException {
         for (Doctor doctor : DoctorService.getAllDoctors()) {
             String line = doctor.getPersonId() + "," + doctor.getName() + "," + doctor.getEmail() + "," + doctor.getPhoneNumber() + "," + doctor.getSpeciality() + "," + doctor.getConsultationFee();
             CSVUtil.writeLine(Constants.DOCTOR_CSV, line);
         }
 
+
         for (Patient patient : PatientService.getAllPatients()) {
             String line = patient.getPersonId() + "," + patient.getName() + "," + patient.getEmail() + "," + patient.getPhoneNumber() + "," + patient.getDob();
             CSVUtil.writeLine(Constants.PATIENT_CSV, line);
         }
+
 
         for (Appointment appointment : AppointmentService.getAllAppointments()) {
             String line = appointment.getAppointmentId() + "," + appointment.getDoctor().getPersonId() + "," + appointment.getPatient().getPersonId() + "," + appointment.getDateOfAppointment() + "," + appointment.getStatus();
             CSVUtil.writeLine(Constants.APPOINTMENT_CSV, line);
         }
 
+
         System.out.println("Data saved to CSV.");
     }
+
 
     private static void loadDataFromCsv() {
         try {
@@ -192,12 +254,14 @@ public class Main {
                 }
             }
 
+
             List<String[]> patients = CSVUtil.readAll(Constants.PATIENT_CSV);
             for (String[] p : patients) {
                 if (p.length >= 5) {
                     PatientService.createNewPatient(p[1], p[2], p[3], LocalDate.parse(p[4]));
                 }
             }
+
 
             List<String[]> appointments = CSVUtil.readAll(Constants.APPOINTMENT_CSV);
             for (String[] a : appointments) {
@@ -206,9 +270,11 @@ public class Main {
                 }
             }
 
+
             System.out.println("CSV data loaded.");
         } catch (Exception e) {
             System.out.println("Could not load CSV data: " + e.getMessage());
         }
     }
 }
+
