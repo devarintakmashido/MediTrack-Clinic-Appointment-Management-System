@@ -15,7 +15,7 @@ public class Main {
         if (args.length > 0 && "--loadData".equalsIgnoreCase(args[0])) {
             CSVConsole.loadDataFromCsv();
         }
-        while (true) {
+        while (true ) {
             Menu.mainMenu();
             System.out.print("Choose: ");
             int choice;
