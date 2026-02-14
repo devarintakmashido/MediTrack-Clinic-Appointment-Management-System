@@ -10,9 +10,7 @@ javac -version
 ```
 
 ## 2. Open Project
-```bash
-cd /Users/arindamrathore26/IdeaProjects/MediTrackGroup
-```
+
 
 ## 3. Compile
 ```bash
@@ -35,8 +33,3 @@ java -cp out meditrack.Main --loadData
 java -cp out meditrack.test.TestRunner
 ```
 
-## 7. Suggested Screenshots for Submission
-- `java -version` output
-- `javac -version` output
-- Compile command success
-- Main menu running
