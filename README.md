@@ -92,3 +92,7 @@ These are available from menu option `9`.
 - `docs/JVM_Report.md`
 - `docs/Design_Decisions.md`
 - JavaDoc HTML: `docs/javadocs/index.html`
+
+## YOU can go through the given video below for the walkthrough of the project
+## Project Walkthrough Video
+[Watch the 2–3 minute demo](https://drive.google.com/file/d/1ZIMY4cb2fpsNidu1BjXuaIcYD3uDNfD5/view?usp=drive_link)
