@@ -12,7 +12,10 @@ import meditrack.util.Validator;
 
 import java.util.List;
 import java.util.stream.Collectors;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 public class DoctorService {
 
@@ -62,7 +65,10 @@ public class DoctorService {
         return DoctorRepository.getAll();
     }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     public static List<Doctor> getDoctorsBySpeciality(Speciality speciality) {
         return DoctorRepository.getAll()
                 .stream()
@@ -70,7 +76,10 @@ public class DoctorService {
                 .collect(Collectors.toList());
     }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
     public static double getAverageConsultationFee() {
         return DoctorRepository.getAll()
                 .stream()
