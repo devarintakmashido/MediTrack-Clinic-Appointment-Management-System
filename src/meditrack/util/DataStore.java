@@ -1,35 +1,25 @@
-package meditrack.util;
+package util;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
-import java.io.*;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+public class DataStore<T> {
 
-public class DataStore<T extends Serializable> {
+    private final List<T> items = new ArrayList<>();
 
-    private Map<String, T> store = new HashMap<>();
-
-    public void save(String id, T obj) {
-        store.put(id, obj);
+    public void add(T item) {
+        items.add(item);
     }
 
-    public T findById(String id) {
-        return store.get(id);
+    public void remove(T item) {
+        items.remove(item);
     }
 
-    public Collection<T> findAll() {
-        return store.values();
+    public List<T> getAll() {
+        return new ArrayList<>(items); // defensive copy
     }
 
-    public void serialize(String file) throws IOException {
-        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-        oos.writeObject(store);
-        oos.close();
-    }
-
-    public void deserialize(String file) throws IOException, ClassNotFoundException {
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-        store = (Map<String, T>) ois.readObject();
-        ois.close();
+    public Optional<T> findFirst(java.util.function.Predicate<T> predicate) {
+        return items.stream().filter(predicate).findFirst();
     }
 }

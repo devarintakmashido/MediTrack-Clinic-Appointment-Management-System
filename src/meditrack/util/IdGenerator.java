@@ -1,9 +1,12 @@
-package meditrack.util;
-
-import java.util.UUID;
+package util;
 
 public class IdGenerator {
-    public static String generate() {
-        return UUID.randomUUID().toString();
+    private static Integer currentDataId = 0;
+
+    public static String generateID(String type) {
+        currentDataId++;
+        return type +Integer.toString(currentDataId);
     }
+
+
 }
