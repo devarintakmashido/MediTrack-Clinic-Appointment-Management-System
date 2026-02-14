@@ -13,8 +13,22 @@ public class BillConsole {
         System.out.print("Appointment ID: ");
         String appointmentId = sc.nextLine();
 
+        String billId = BillService.generateBill(appointmentId);
+        BillSummary summary = BillService.payBill(billId);
+        System.out.println("Paid: " + summary);
+    }
+
+    public static void generateBill() throws EntityNotFoundException{
+        System.out.print("Appointment ID: ");
+        String appointmentId = sc.nextLine();
 
         String billId = BillService.generateBill(appointmentId);
+        System.out.println("BillId : " + billId);
+    }
+
+    public static void payBill() throws EntityNotFoundException{
+        System.out.println("BillId : " );
+        String billId = sc.nextLine();
         BillSummary summary = BillService.payBill(billId);
         System.out.println("Paid: " + summary);
     }
