@@ -37,10 +37,8 @@ public class HandleMenu {
                     case 4:
                         BillConsole.generateAndPayBill();
                         break;
-
                     case 5:
-                        return;   // exit patient menu
-
+                        return;
                     default:
                         System.out.println("Invalid option.");
                 }
