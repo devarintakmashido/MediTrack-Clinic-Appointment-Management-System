@@ -1,4 +1,4 @@
-package Exception;
+package meditrack.Exception;
 
 public class EntityNotFoundException extends Exception {
     public EntityNotFoundException(String message) {

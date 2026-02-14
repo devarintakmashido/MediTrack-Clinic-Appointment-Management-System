@@ -1,4 +1,4 @@
-package Entity;
+package meditrack.Entity;
 
 public class Doctor extends Person {
 

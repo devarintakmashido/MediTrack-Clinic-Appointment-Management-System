@@ -1,4 +1,4 @@
-package util;
+package meditrack.util;
 
 public class IdGenerator {
     private static Integer currentDataId = 0;

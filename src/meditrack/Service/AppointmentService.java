@@ -1,13 +1,13 @@
-package Service;
+package meditrack.Service;
 
-import Entity.Appointment;
-import Entity.Doctor;
-import Entity.Patient;
-import Repositories.AppointmentRepository;
-import Repositories.DoctorRepository;
-import Repositories.PatientRepository;
-import util.Validator;
-import Exception.EntityNotFoundException;
+import meditrack.Entity.Appointment;
+import meditrack.Entity.Doctor;
+import meditrack.Entity.Patient;
+import meditrack.Repositories.AppointmentRepository;
+import meditrack.Repositories.DoctorRepository;
+import meditrack.Repositories.PatientRepository;
+import meditrack.util.Validator;
+import meditrack.Exception.EntityNotFoundException;
 
 import java.time.LocalDate;
 

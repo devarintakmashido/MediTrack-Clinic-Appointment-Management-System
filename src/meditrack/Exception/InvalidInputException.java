@@ -1,4 +1,4 @@
-package Exception;
+package meditrack.Exception;
 
 public class InvalidInputException extends RuntimeException {
     public InvalidInputException(String message) {

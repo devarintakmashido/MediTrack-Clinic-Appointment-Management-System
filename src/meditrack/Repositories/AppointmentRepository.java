@@ -1,9 +1,9 @@
-package Repositories;
+package meditrack.Repositories;
 
-import Entity.Appointment;
-import Entity.AppointmentStatus;
-import Entity.Doctor;
-import Entity.Patient;
+import meditrack.Entity.Appointment;
+import meditrack.Entity.AppointmentStatus;
+import meditrack.Entity.Doctor;
+import meditrack.Entity.Patient;
 import util.DataStore;
 import util.IdGenerator;
 

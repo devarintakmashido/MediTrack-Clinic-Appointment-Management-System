@@ -1,4 +1,4 @@
-package Service;
+package meditrack.Service;
 
 public class DoctorService {
 

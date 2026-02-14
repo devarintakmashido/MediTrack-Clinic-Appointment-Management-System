@@ -1,8 +1,8 @@
-package Repositories;
+package meditrack.Repositories;
 
-import Entity.Patient;
-import util.DataStore;
-import util.IdGenerator;
+import meditrack.Entity.Patient;
+import meditrack.util.DataStore;
+import meditrack.util.IdGenerator;
 
 import java.time.LocalDate;
 import java.util.List;

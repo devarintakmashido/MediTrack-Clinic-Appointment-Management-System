@@ -1,9 +1,9 @@
-package Repositories;
+package meditrack.Repositories;
 
-import Entity.Doctor;
-import Entity.Speciality;
-import util.DataStore;
-import util.IdGenerator;
+import meditrack.Entity.Doctor;
+import meditrack.Entity.Speciality;
+import meditrack.util.DataStore;
+import meditrack.util.IdGenerator;
 
 import java.util.List;
 

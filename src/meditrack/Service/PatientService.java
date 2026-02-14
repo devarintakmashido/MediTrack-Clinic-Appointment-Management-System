@@ -1,12 +1,12 @@
-package Service;
+package meditrack.Service;
 
-import Entity.Patient;
-import Repositories.PatientRepository;
-import Exception.EntityNotFoundException;
-import util.Validator;
+import meditrack.Entity.Patient;
+import meditrack.Repositories.PatientRepository;
+import meditrack.Exception.EntityNotFoundException;
+import meditrack.util.Validator;
 
 import java.time.LocalDate;
-import Exception.InvalidInputException;
+import meditrack.Exception.InvalidInputException;
 
 public class PatientService {
 

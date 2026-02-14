@@ -1,4 +1,4 @@
-package Entity;
+package meditrack.Entity;
 
 public enum AppointmentStatus {
     SCHEDULED,

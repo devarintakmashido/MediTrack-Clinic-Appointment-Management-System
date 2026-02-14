@@ -1,10 +1,10 @@
-package Repositories;
+package meditrack.Repositories;
 
-import Entity.Appointment;
-import Entity.Bill;
-import Entity.Patient;
-import util.DataStore;
-import util.IdGenerator;
+import meditrack.Entity.Appointment;
+import meditrack.Entity.Bill;
+import meditrack.Entity.Patient;
+import meditrack.util.DataStore;
+import meditrack.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,12 +1,12 @@
-package Service;
+package meditrack.Service;
 
-import Entity.Appointment;
-import Entity.Bill;
-import Entity.BillSummary;
-import Repositories.AppointmentRepository;
-import Repositories.BillRepository;
-import Repositories.BillSummaryRepo;
-import Exception.EntityNotFoundException;
+import meditrack.Entity.Appointment;
+import meditrack.Entity.Bill;
+import meditrack.Entity.BillSummary;
+import meditrack.Repositories.AppointmentRepository;
+import meditrack.Repositories.BillRepository;
+import meditrack.Repositories.BillSummaryRepo;
+import meditrack.Exception.EntityNotFoundException;
 
 public class BillService {
 
