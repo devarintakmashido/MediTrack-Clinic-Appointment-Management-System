@@ -187,10 +187,7 @@ public class Main {
         }
     }
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     private static void showStreamsAnalytics(Scanner scanner) {
         System.out.println("Streams Menu");
         System.out.println("1. Filter doctors by speciality");
@@ -198,10 +195,7 @@ public class Main {
         System.out.println("3. Appointments per doctor");
         System.out.print("Choose: ");
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         int option = Integer.parseInt(scanner.nextLine());
         if (option == 1) {
             System.out.print("Enter speciality: ");
@@ -227,10 +221,7 @@ public class Main {
         }
     }
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     private static void saveDataToCsv() throws IOException {
         for (Doctor doctor : DoctorService.getAllDoctors()) {
             String line = doctor.getPersonId() + "," + doctor.getName() + "," + doctor.getEmail() + "," + doctor.getPhoneNumber() + "," + doctor.getSpeciality() + "," + doctor.getConsultationFee();

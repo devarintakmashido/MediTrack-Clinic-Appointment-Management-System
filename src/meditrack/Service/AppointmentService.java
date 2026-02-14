@@ -15,10 +15,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 
 public class AppointmentService {
 
@@ -82,10 +79,7 @@ public class AppointmentService {
         return AppointmentRepository.getAll();
     }
 
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     public static Map<String, Long> getAppointmentCountPerDoctor() {
         return AppointmentRepository.getAll()
                 .stream()
