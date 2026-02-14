@@ -1,29 +1,144 @@
-# MediTrack (Java Console App)
+# 🏥 MediTrack — Clinic & Appointment Management System
 
-MediTrack is a beginner-friendly Java backend project for managing:
-- Doctors
-- Patients
-- Appointments
-- Billing
-- CSV persistence
-- Streams/Lambda analytics
+MediTrack is a layered, console-based Clinic & Appointment Management System built entirely from scratch using Core Java.
 
-## Project Structure
-- `src/meditrack/Entity`
-- `src/meditrack/Service`
-- `src/meditrack/Repositories`
-- `src/meditrack/util`
-- `src/meditrack/Exception`
-- `src/meditrack/constants`
-- `src/meditrack/test`
-- `docs/`
+The application demonstrates strong OOP principles, clean architecture, design patterns, Java 8 streams, file I/O, concurrency basics, and structured package organization.
 
-## Compile
-```bash
-cd /Users/arindamrathore26/IdeaProjects/MediTrackGroup
-rm -rf out
-javac -d out $(find src -name '*.java')
-```
+---
+
+# 🚀 Features
+
+## 👤 Patient Management
+- Add patient  
+- Search patient (by ID / name / age)  
+- Add medical history  
+- View patient details  
+
+## 👨‍⚕️ Doctor Management
+- Add doctor  
+- List doctors  
+- Filter by specialization (Streams)  
+- Compute average consultation fee  
+
+## 📅 Appointment Management
+- Book appointment  
+- Cancel appointment  
+- Track appointment status (`SCHEDULED`, `CANCELLED`, `COMPLETED`)  
+- Appointment analytics (appointments per doctor)  
+
+## 💰 Billing System
+- Generate bill  
+- Calculate tax  
+- Generate immutable `BillSummary`  
+- Pay bill  
+- Factory-based bill creation  
+
+## 📊 Analytics (Java 8 Streams)
+- Doctors filtered by specialization  
+- Average consultation fee  
+- Appointment count per doctor  
+
+## 💾 CSV Persistence
+- Save data to CSV  
+- Load data from CSV  
+- Uses try-with-resources  
+
+---
+
+# 📦 Package Structure
+
+## 1️⃣ Entity
+Core domain models:
+- `Person` (abstract)  
+- `Doctor`  
+- `Patient`  
+- `Appointment`  
+- `Bill`  
+- `BillSummary` (immutable)  
+- `AppointmentStatus` (enum)  
+- `Payable` (interface)  
+
+---
+
+## 2️⃣ Service
+Contains business logic:
+- `DoctorService`  
+- `PatientService`  
+- `AppointmentService`  
+- `BillingService`  
+
+Responsibilities:
+- Validation  
+- Workflow coordination  
+- Stream analytics  
+- Business rule enforcement  
+
+---
+
+## 3️⃣ util
+Reusable utilities:
+- `DataStore<T>` (generic storage)  
+- `Validator`  
+- `CSVUtil`  
+- `IdGenerator` (Singleton using `AtomicInteger`)  
+
+---
+
+## 4️⃣ Exception
+Custom exceptions:
+- `AppointmentNotFoundException`  
+- `InvalidDataException`  
+
+---
+
+## 5️⃣ Constants
+Application-wide constants:
+- Tax rate  
+- File paths  
+- Configuration values  
+
+---
+
+## 6️⃣ Console
+Handles user interaction and input/output.
+
+---
+
+## 7️⃣ Menu
+Controls application navigation and routing.
+
+---
+
+## 8️⃣ test
+Manual test runner and functional test scripts.
+
+---
+
+# 🧠 OOP Concepts Demonstrated
+
+- Encapsulation  
+- Inheritance (`Person → Doctor, Patient`)  
+- Polymorphism  
+- Abstraction  
+- Interfaces (`Payable`)  
+- Method overriding  
+- Constructor chaining  
+- Static members  
+- Enums  
+- Immutability (`BillSummary`)  
+- Deep vs Shallow Copy (`clone()`)  
+
+---
+
+# 👨‍💻 Authors
+
+Developed by **Manish Prajapat** and **Arindam Rathore** as part of the MediTrack learning assignment.  
+
+This project demonstrates proficiency in Core Java, OOP principles, system design fundamentals, layered architecture, and structured application development.
+
+---
+
+# ▶️ Running the Application
 
 ## Run App
 ```bash
@@ -95,4 +210,4 @@ These are available from menu option `9`.
 
 ## YOU can go through the given video below for the walkthrough of the project
 ## Project Walkthrough Video
-[Watch the Demonstration demo](https://drive.google.com/file/d/1iLfEI21VFIWX4pquvck96QrryV0ZnNHM/view?usp=sharing)
+[Watch the Demonstration demo](https://drive.google.com/file/d/1ZIMY4cb2fpsNidu1BjXuaIcYD3uDNfD5/view?usp=drive_link)
